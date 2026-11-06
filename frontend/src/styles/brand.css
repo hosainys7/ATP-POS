@@ -1,0 +1,908 @@
+:root {
+  --atp-orange: #ff5a00;
+  --atp-orange-dark: #c94800;
+  --atp-orange-soft: #fff3ec;
+  --atp-ink: #0f172a;
+  --atp-muted: #64748b;
+  --atp-border: #e2e8f0;
+  --atp-bg: #f5f7fb;
+  --atp-green: #16a34a;
+  --atp-blue: #2563eb;
+  --atp-red: #dc2626;
+}
+
+html { font-size: 16px; }
+body {
+  margin: 0;
+  background: var(--atp-bg);
+  color: var(--atp-ink);
+  font-family: "Segoe UI Variable Text", "Aptos", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button, input, select, textarea { font: inherit; }
+button { letter-spacing: -0.005em; }
+
+main h1 {
+  font-family: "Segoe UI Variable Display", "Aptos Display", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.85rem !important;
+  line-height: 1.15 !important;
+  font-weight: 760 !important;
+  letter-spacing: -0.035em !important;
+}
+main h2 {
+  font-family: "Segoe UI Variable Display", "Aptos Display", "Segoe UI", system-ui, sans-serif;
+  font-size: 1.08rem !important;
+  line-height: 1.3 !important;
+  font-weight: 720 !important;
+  letter-spacing: -0.018em !important;
+}
+main .text-xs { font-size: 0.76rem !important; line-height: 1.15rem !important; }
+main .text-sm { font-size: 0.875rem !important; line-height: 1.35rem !important; }
+main table { font-size: 0.85rem; }
+main table th { font-size: 0.71rem !important; color: #64748b !important; font-weight: 750 !important; letter-spacing: .045em; }
+main table td { color: #334155; }
+main input, main select, main textarea { font-size: 0.9rem !important; color: #0f172a; }
+main label { color: #334155; font-weight: 650; }
+
+/* Top navigation */
+.atp-topbar {
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid #e5eaf0;
+  box-shadow: 0 1px 2px rgba(15,23,42,.03), 0 8px 24px rgba(15,23,42,.025);
+  backdrop-filter: blur(12px);
+}
+.atp-brand { border-radius: 12px; padding: 4px 4px 4px 0; }
+.atp-brand-logo {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+}
+.atp-brand-logo img { width: 42px; height: 42px; object-fit: contain; display:block; }
+.atp-nav-item {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  border-radius: 10px;
+  padding: 8px 11px;
+  color: #475569;
+  font-size: 13.5px;
+  font-weight: 650;
+  transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.atp-nav-item:hover { background:#f1f5f9; color:#0f172a; }
+.atp-nav-item.is-active:not(.atp-nav-sale) { background:#fff3ec; color:#b94705; box-shadow: inset 0 0 0 1px #fed7bd; }
+.atp-nav-sale { background:#079b66; color:#fff; padding-inline:14px; font-weight:700; }
+.atp-nav-sale:hover { background:#07875b; color:#fff; }
+.atp-nav-sale.is-active { background:#067a53; box-shadow:0 4px 12px rgba(5,150,105,.16); }
+.atp-admin-chip { align-items:center; gap:8px; border:1px solid #e2e8f0; border-radius:10px; background:#f8fafc; padding:8px 10px; color:#475569; font-size:11.5px; font-weight:700; }
+
+/* Shared surfaces */
+.atp-card {
+  background:#fff;
+  border:1px solid #e3e8ef;
+  border-radius:16px;
+  box-shadow:0 1px 2px rgba(15,23,42,.03), 0 8px 20px rgba(15,23,42,.025);
+}
+.atp-card-hover { transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease; }
+.atp-card-hover:hover { transform:translateY(-1px); border-color:#cfd8e3; box-shadow:0 10px 28px rgba(15,23,42,.07); }
+.atp-kicker { color:#b94705; font-weight:700; letter-spacing:.01em; }
+.atp-input { outline:none; background:#fff; transition:border-color 140ms ease, box-shadow 140ms ease; }
+.atp-input:focus { border-color:#94a3b8; box-shadow:0 0 0 3px rgba(37,99,235,.08); }
+.atp-primary { background:var(--atp-orange); color:#fff; font-weight:700; }
+.atp-secondary { background:#0f172a; color:#fff; font-weight:700; }
+.atp-badge-orange { background:#fff3ec; color:#b94705; }
+
+/* Dismissible workflow/help note */
+.atp-guide {
+  border:1px solid #e3e8ef;
+  border-left:3px solid #94a3b8;
+  border-radius:12px;
+  background:#fff;
+  padding:11px 12px;
+  box-shadow:0 1px 2px rgba(15,23,42,.02);
+}
+.atp-guide-icon { display:flex; width:30px; height:30px; flex:0 0 30px; align-items:center; justify-content:center; border-radius:9px; background:#f1f5f9; color:#475569; }
+.atp-guide-title { color:#0f172a; font-size:12.5px; font-weight:750; }
+.atp-guide-text { margin-top:2px; color:#64748b; font-size:12.5px; line-height:1.4; }
+.atp-guide-close { display:flex; width:30px; height:30px; align-items:center; justify-content:center; border-radius:8px; color:#94a3b8; }
+.atp-guide-close:hover { background:#f1f5f9; color:#475569; }
+
+/* Tables */
+.atp-table thead th { background:#f8fafc; color:#64748b; font-weight:750; letter-spacing:.045em; text-transform:uppercase; }
+.atp-table tbody tr { transition:background 120ms ease; }
+.atp-table tbody tr:hover { background:#fafbfc; }
+
+/* Statuses: clean and compact */
+.atp-status {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:11.5px;
+  line-height:1;
+  font-weight:750;
+  border:1px solid transparent;
+  white-space:nowrap;
+}
+.atp-status::before { content:""; width:6px; height:6px; border-radius:999px; background:currentColor; opacity:.8; }
+.atp-status-received { color:#1d4ed8; background:#eff6ff; border-color:#bfdbfe; }
+.atp-status-progress { color:#b45309; background:#fffbeb; border-color:#fde68a; }
+.atp-status-ready { color:#047857; background:#ecfdf5; border-color:#a7f3d0; }
+.atp-status-delivered { color:#475569; background:#f8fafc; border-color:#e2e8f0; }
+
+/* Modern KPI */
+.atp-kpi {
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  min-height:118px;
+  border:1px solid #e3e8ef;
+  border-radius:16px;
+  background:#fff;
+  padding:16px;
+  text-align:left;
+  box-shadow:0 1px 2px rgba(15,23,42,.025), 0 7px 18px rgba(15,23,42,.02);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.atp-kpi:hover { transform:translateY(-1px); border-color:#cbd5e1; box-shadow:0 10px 24px rgba(15,23,42,.06); }
+.atp-kpi-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.atp-kpi-label { color:#64748b; font-size:12px; font-weight:700; }
+.atp-kpi-icon { display:flex; width:34px; height:34px; align-items:center; justify-content:center; border-radius:10px; }
+.atp-kpi-value { margin-top:11px; color:#0f172a; font-size:28px; line-height:1; font-weight:760; letter-spacing:-.035em; }
+.atp-kpi-hint { margin-top:7px; color:#94a3b8; font-size:10.5px; font-weight:650; }
+.atp-kpi-green .atp-kpi-icon { background:#ecfdf5; color:#059669; }
+.atp-kpi-blue .atp-kpi-icon { background:#eff6ff; color:#2563eb; }
+.atp-kpi-red .atp-kpi-icon { background:#fff1f2; color:#e11d48; }
+.atp-kpi-amber .atp-kpi-icon { background:#fffbeb; color:#d97706; }
+.atp-kpi-slate .atp-kpi-icon { background:#f1f5f9; color:#475569; }
+
+.atp-chart-grid line { stroke:#edf1f5; stroke-width:1; }
+.atp-nav-scroll { scrollbar-width:none; }
+.atp-nav-scroll::-webkit-scrollbar { display:none; }
+
+@media (max-width: 1050px) {
+  .atp-nav-item { font-size:13px; padding-inline:9px; }
+}
+@media (max-width: 900px) {
+  .atp-responsive-grid { grid-template-columns:1fr !important; }
+}
+
+
+/* =========================================================
+   Compact professional pass
+   ========================================================= */
+body {
+  font-family: "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.42;
+  letter-spacing: -0.008em;
+}
+main h1 {
+  font-size: 1.62rem !important;
+  line-height: 1.12 !important;
+  font-weight: 760 !important;
+}
+main h2 {
+  font-size: 1rem !important;
+  line-height: 1.25 !important;
+}
+main .text-sm { font-size: .82rem !important; line-height: 1.28rem !important; }
+main .text-xs { font-size: .72rem !important; line-height: 1.05rem !important; }
+main label { color:#334155; font-weight:650; }
+main input, main select, main textarea { font-size:.84rem !important; }
+main table { font-size:.8rem; }
+main table th { font-size:.66rem !important; }
+main table td { vertical-align:middle; }
+
+.atp-card {
+  border-radius:14px;
+  border-color:#e5e9ef;
+  box-shadow:0 1px 2px rgba(15,23,42,.025), 0 5px 14px rgba(15,23,42,.018);
+}
+.atp-card-hover:hover {
+  transform:none;
+  box-shadow:0 8px 20px rgba(15,23,42,.055);
+}
+.atp-input {
+  border-radius:10px !important;
+}
+.atp-input:focus {
+  border-color:#94a3b8 !important;
+  box-shadow:0 0 0 3px rgba(37,99,235,.07) !important;
+}
+
+/* Compact help bubble: informative, never a page section */
+.atp-guide {
+  display:inline-flex;
+  width:auto;
+  max-width:min(760px, 100%);
+  align-items:center;
+  gap:8px;
+  border:1px solid #dfe5ec;
+  border-left:0;
+  border-radius:999px;
+  background:#fff;
+  padding:6px 7px 6px 8px;
+  box-shadow:0 1px 2px rgba(15,23,42,.025);
+}
+.atp-guide-icon {
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  border-radius:999px;
+  background:#f1f5f9;
+}
+.atp-guide-title {
+  margin-right:6px;
+  font-size:11px;
+  font-weight:760;
+  white-space:nowrap;
+}
+.atp-guide-text {
+  display:inline;
+  margin:0;
+  color:#64748b;
+  font-size:11px;
+  line-height:1.25;
+}
+.atp-guide-close {
+  width:25px;
+  height:25px;
+  flex:0 0 25px;
+  border-radius:999px;
+}
+
+/* KPI: compact and business-like */
+.atp-kpi {
+  min-height:92px;
+  border-radius:14px;
+  padding:13px 14px;
+}
+.atp-kpi-label { font-size:11px; }
+.atp-kpi-icon {
+  width:30px;
+  height:30px;
+  border-radius:9px;
+}
+.atp-kpi-value {
+  margin-top:7px;
+  font-size:24px;
+}
+.atp-kpi-hint {
+  margin-top:5px;
+  font-size:9.5px;
+}
+.atp-kpi:hover {
+  transform:none;
+  box-shadow:0 7px 18px rgba(15,23,42,.05);
+}
+
+/* Dense working tables */
+.atp-table thead th { padding-top:10px !important; padding-bottom:10px !important; }
+.atp-table tbody td { padding-top:10px !important; padding-bottom:10px !important; }
+
+/* Compact statuses */
+.atp-status {
+  padding:4px 8px;
+  font-size:10.5px;
+}
+
+/* POS cards */
+.atp-pos-menu {
+  max-height:340px;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.atp-pos-card {
+  min-height:116px;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  background:#fff;
+  padding:11px 12px;
+  text-align:left;
+  transition:border-color .14s ease, box-shadow .14s ease, transform .14s ease;
+}
+.atp-pos-card:hover {
+  border-color:#f6a96f;
+  box-shadow:0 5px 14px rgba(15,23,42,.055);
+  transform:translateY(-1px);
+}
+.atp-pos-cart {
+  max-height:285px;
+  overflow-y:auto;
+}
+
+/* Checkout */
+.atp-checkout {
+  border:1px solid #dfe5ec;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(15,23,42,.055);
+}
+.atp-checkout-total {
+  font-size:34px;
+  line-height:1;
+  font-weight:780;
+  letter-spacing:-.04em;
+}
+
+/* Modal density */
+.atp-modal-panel,
+.atp-compact-modal {
+  max-height:min(88vh, 760px);
+}
+.atp-modal-header { padding:14px 16px !important; }
+.atp-modal-body { padding:14px 16px !important; }
+.atp-modal-footer { padding:12px 16px !important; }
+
+/* Repairs */
+.atp-repair-service {
+  min-height:64px;
+  border-radius:12px;
+  padding:10px 11px;
+}
+.atp-repair-service p {
+  display:-webkit-box;
+  overflow:hidden;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+}
+.atp-repair-form textarea { min-height:72px !important; }
+
+/* Small stat strip used by Stock/Backup */
+.atp-stat-strip {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  overflow:hidden;
+  border:1px solid #e3e8ef;
+  border-radius:13px;
+  background:#fff;
+}
+.atp-stat-strip > * {
+  min-height:66px;
+  padding:11px 14px;
+  border-right:1px solid #eef2f6;
+}
+.atp-stat-strip > *:last-child { border-right:0; }
+
+@media (min-width: 1450px) {
+  .atp-menu-grid { grid-template-columns:repeat(5,minmax(0,1fr)) !important; }
+}
+@media (max-width: 1100px) {
+  .atp-stat-strip { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .atp-stat-strip > *:nth-child(2) { border-right:0; }
+  .atp-stat-strip > *:nth-child(-n+2) { border-bottom:1px solid #eef2f6; }
+}
+@media (max-width: 720px) {
+  .atp-guide { border-radius:12px; align-items:flex-start; }
+  .atp-guide-text { display:block; margin-top:1px; }
+  .atp-stat-strip { grid-template-columns:1fr; }
+  .atp-stat-strip > * { border-right:0; border-bottom:1px solid #eef2f6; }
+  .atp-stat-strip > *:last-child { border-bottom:0; }
+}
+
+/* =========================================================
+   Repairs — workshop split layout
+   ========================================================= */
+.atp-repairs-page {
+  font-size: 15px;
+}
+.atp-repairs-page h1 {
+  font-size: 1.8rem !important;
+}
+.atp-repairs-page .atp-kpi {
+  min-height: 88px;
+  padding: 14px 15px;
+}
+.atp-repairs-page .atp-kpi-label {
+  font-size: 12.5px;
+  color: #475569;
+}
+.atp-repairs-page .atp-kpi-value {
+  margin-top: 5px;
+  font-size: 26px;
+}
+.atp-repairs-page .atp-kpi-hint {
+  font-size: 11px;
+}
+
+.atp-workshop-intake {
+  padding: 0 !important;
+}
+.atp-workshop-layout {
+  display: grid;
+  grid-template-columns: 285px minmax(0, 1fr);
+  min-height: 430px;
+}
+.atp-service-rail {
+  border-right: 1px solid #e8edf3;
+  background: #fbfcfe;
+  padding: 18px;
+}
+.atp-service-rail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.atp-service-list {
+  display: grid;
+  gap: 7px;
+}
+.atp-service-option {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  background: #fff;
+  padding: 10px 11px;
+  text-align: left;
+  transition: border-color .14s ease, background .14s ease, box-shadow .14s ease;
+}
+.atp-service-option:hover {
+  border-color: #cbd5e1;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(15,23,42,.045);
+}
+.atp-service-option.is-active {
+  border-color: #fb923c;
+  background: #fff7ed;
+  box-shadow: inset 3px 0 0 #f97316;
+}
+.atp-service-option-badge {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #fff1e8;
+  color: #c2410c;
+  font-size: 12px;
+  font-weight: 800;
+}
+.atp-service-option.is-active .atp-service-option-badge {
+  background: #f97316;
+  color: #fff;
+}
+.atp-service-option-title {
+  display: block;
+  color: #0f172a;
+  font-size: 13.5px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+.atp-service-option-desc {
+  display: -webkit-box;
+  margin-top: 3px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #64748b;
+  font-size: 11.5px;
+  line-height: 1.25;
+}
+.atp-intake-panel {
+  padding: 20px 22px;
+  background: #fff;
+}
+.atp-field-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+}
+.atp-repairs-page input,
+.atp-repairs-page select,
+.atp-repairs-page textarea {
+  font-size: 14px !important;
+}
+.atp-repairs-page textarea {
+  min-height: 86px !important;
+}
+.atp-price-hint,
+.atp-selected-service {
+  border: 1px solid #fed7aa;
+  border-radius: 11px;
+  background: #fff7ed;
+  padding: 10px 12px;
+}
+.atp-price-hint span,
+.atp-selected-service span {
+  display: block;
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.atp-price-hint strong,
+.atp-selected-service strong {
+  display: block;
+  margin-top: 3px;
+  color: #c2410c;
+  font-size: 13px;
+}
+.atp-selected-service {
+  border-color: #e2e8f0;
+  background: #f8fafc;
+}
+.atp-selected-service strong {
+  color: #0f172a;
+}
+
+.atp-repairs-page .atp-table {
+  font-size: 13px;
+}
+.atp-repairs-page .atp-table thead th {
+  font-size: 11px !important;
+}
+.atp-repairs-page .atp-status {
+  font-size: 11.5px;
+  padding: 5px 9px;
+}
+
+@media (max-width: 1100px) {
+  .atp-workshop-layout {
+    grid-template-columns: 1fr;
+  }
+  .atp-service-rail {
+    border-right: 0;
+    border-bottom: 1px solid #e8edf3;
+  }
+  .atp-service-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .atp-service-list {
+    grid-template-columns: 1fr;
+  }
+  .atp-intake-panel,
+  .atp-service-rail {
+    padding: 14px;
+  }
+}
+
+/* =========================================================
+   Final unified density + POS workspace pass
+   ========================================================= */
+body {
+  font-family: "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.42;
+  background: #f6f8fb;
+}
+main h1 { font-size: 1.58rem !important; letter-spacing: -.028em !important; }
+main h2 { font-size: 1.02rem !important; }
+main .text-xs { font-size: .75rem !important; line-height: 1.08rem !important; }
+main .text-sm { font-size: .84rem !important; line-height: 1.24rem !important; }
+main input, main select, main textarea { font-size: .86rem !important; }
+main table { font-size: .82rem; }
+main table th { font-size: .67rem !important; }
+
+/* Navbar: slimmer, still readable */
+.atp-topbar { min-height: 64px; }
+.atp-brand-logo { width: 39px; height: 39px; border-radius: 10px; }
+.atp-brand-logo img { width: 37px; height: 37px; }
+.atp-nav-item { min-height: 36px; padding: 7px 10px; font-size: 13px; }
+.atp-nav-sale { padding-inline: 13px; }
+.atp-admin-chip { padding: 7px 9px; }
+
+/* Compact floating workflow note */
+.atp-guide {
+  max-width: 620px;
+  min-height: 34px;
+  padding: 5px 7px;
+  border-radius: 999px;
+  border-left: 1px solid #e3e8ef;
+}
+.atp-guide-icon { width: 23px; height: 23px; flex-basis: 23px; border-radius: 999px; }
+.atp-guide-title { font-size: 11px; }
+.atp-guide-text { font-size: 11px; line-height: 1.2; }
+.atp-guide-close { width: 23px; height: 23px; }
+
+/* Surfaces */
+.atp-card { border-radius: 13px; box-shadow: 0 1px 2px rgba(15,23,42,.025), 0 5px 14px rgba(15,23,42,.02); }
+.atp-kpi { min-height: 82px; padding: 11px 13px; border-radius: 13px; }
+.atp-kpi-label { font-size: 11px; }
+.atp-kpi-icon { width: 29px; height: 29px; border-radius: 8px; }
+.atp-kpi-value { margin-top: 5px; font-size: 23px; }
+.atp-kpi-hint { margin-top: 4px; font-size: 10px; }
+.atp-stat-strip > * { min-height: 54px; padding: 8px 12px; }
+.atp-table thead th { padding-top: 8px !important; padding-bottom: 8px !important; }
+.atp-table tbody td { padding-top: 8px !important; padding-bottom: 8px !important; }
+.atp-status { padding: 4px 8px; font-size: 10.5px; }
+
+/* POS: true one-screen workspace */
+.atp-pos-menu {
+  max-height: calc(100vh - 300px);
+  min-height: 245px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+.atp-pos-card {
+  min-height: 104px;
+  padding: 9px 10px;
+  border-radius: 11px;
+}
+.atp-pos-card:hover { transform: none; box-shadow: 0 4px 12px rgba(15,23,42,.05); }
+.atp-checkout {
+  max-height: calc(100vh - 92px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 14px !important;
+}
+.atp-checkout-cart {
+  max-height: 245px;
+  overflow-y: auto;
+  border: 1px solid #e7ebf0;
+  border-radius: 11px;
+  background: #fff;
+  scrollbar-gutter: stable;
+}
+.atp-checkout-empty {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #94a3b8;
+  text-align: left;
+  padding: 14px;
+}
+.atp-checkout-line {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto 84px;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  font-size: 12px;
+}
+.atp-qty-btn {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: #fff;
+  color: #334155;
+}
+.atp-qty-btn:hover { background: #f8fafc; }
+.atp-checkout-total { font-size: 31px; }
+
+/* Repairs workshop: readable, compact, operational */
+.atp-repairs-page { font-size: 14.5px; }
+.atp-repairs-page h1 { font-size: 1.62rem !important; }
+.atp-repairs-page .atp-kpi { min-height: 80px; padding: 10px 12px; }
+.atp-repairs-page .atp-kpi-label { font-size: 11.5px; }
+.atp-repairs-page .atp-kpi-value { font-size: 23px; }
+.atp-repairs-page .atp-kpi-hint { font-size: 10px; }
+.atp-workshop-layout { grid-template-columns: 255px minmax(0,1fr); min-height: 360px; }
+.atp-service-rail { padding: 14px; }
+.atp-service-rail-head { margin-bottom: 10px; }
+.atp-service-list { gap: 5px; }
+.atp-service-option { gap: 8px; padding: 8px 9px; border-radius: 9px; }
+.atp-service-option-badge { width: 30px; height: 30px; flex-basis: 30px; border-radius: 8px; }
+.atp-service-option-title { font-size: 13px; }
+.atp-service-option-desc { font-size: 11px; }
+.atp-intake-panel { padding: 15px 17px; }
+.atp-field-label { margin-bottom: 4px; font-size: 12.5px; }
+.atp-repairs-page input,
+.atp-repairs-page select,
+.atp-repairs-page textarea { font-size: 13.5px !important; }
+.atp-repairs-page textarea { min-height: 70px !important; }
+.atp-price-hint, .atp-selected-service { padding: 8px 10px; }
+
+/* Backup should prioritize the list, not status cards */
+.atp-stat-strip.grid-cols-3 { grid-template-columns: repeat(3,minmax(0,1fr)); }
+
+/* Better scroll density for large catalogues */
+.atp-table tbody tr { min-height: 44px; }
+
+@media (min-width: 1450px) {
+  .atp-menu-grid { grid-template-columns: repeat(4,minmax(0,1fr)) !important; }
+}
+@media (max-width: 1180px) {
+  .atp-workshop-layout { grid-template-columns: 220px minmax(0,1fr); }
+  .atp-checkout-line { grid-template-columns: minmax(0,1fr) auto 72px; }
+}
+@media (max-width: 900px) {
+  .atp-checkout { max-height: none; }
+  .atp-pos-menu { max-height: 360px; }
+  .atp-workshop-layout { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   Checkout visibility fix — keep payment action always visible
+   ========================================================= */
+.atp-checkout {
+  max-height: calc(100vh - 88px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+}
+.atp-checkout-head {
+  flex: 0 0 auto;
+  padding: 13px 14px 10px;
+  border-bottom: 1px solid #eef2f6;
+}
+.atp-checkout-scroll {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 10px 14px 12px;
+}
+.atp-checkout-cart {
+  max-height: 210px;
+}
+.atp-checkout-footer {
+  flex: 0 0 auto;
+  border-top: 1px solid #e8edf3;
+  background: #fff;
+  padding: 11px 14px 12px;
+  box-shadow: 0 -8px 18px rgba(15,23,42,.035);
+}
+@media (max-height: 760px) and (min-width: 901px) {
+  .atp-checkout { max-height: calc(100vh - 76px); }
+  .atp-checkout-scroll { padding-top: 8px; padding-bottom: 9px; }
+  .atp-checkout-cart { max-height: 150px; }
+  .atp-checkout-total { font-size: 28px; }
+}
+@media (max-width: 900px) {
+  .atp-checkout { max-height: none; overflow: visible; }
+  .atp-checkout-scroll { overflow: visible; padding: 12px 14px; }
+  .atp-checkout-footer { position: static; }
+}
+
+/* =========================================================
+   Checkout redesign — fixed cashier controls, scroll only cart
+   ========================================================= */
+.atp-checkout {
+  max-height: none !important;
+  overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  background: #fff;
+}
+.atp-checkout-head {
+  padding: 12px 13px 10px;
+  border-bottom: 1px solid #eef2f6;
+}
+.atp-checkout-cart {
+  max-height: 205px !important;
+  min-height: 76px;
+  overflow-y: auto !important;
+  border: 0 !important;
+  border-bottom: 1px solid #eef2f6 !important;
+  border-radius: 0 !important;
+  background: #fff;
+  scrollbar-gutter: stable;
+}
+.atp-checkout-line {
+  padding: 8px 12px !important;
+  gap: 7px !important;
+}
+.atp-checkout-service-line { background: #fffaf5; }
+.atp-checkout-summary {
+  padding: 10px 13px 9px;
+  border-bottom: 1px solid #eef2f6;
+}
+.atp-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  background: #f8fafc;
+  padding: 5px 8px;
+  font-size: 10px;
+  color: #64748b;
+}
+.atp-summary-chip b { color: #0f172a; }
+.atp-checkout-total-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+.atp-checkout-total-row span {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #64748b;
+}
+.atp-checkout-total-row strong {
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: #0f172a;
+}
+.atp-checkout-payment {
+  padding: 10px 13px;
+  border-bottom: 1px solid #eef2f6;
+}
+.atp-cash-row {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  margin-top: 9px;
+}
+.atp-change-box {
+  width: 112px;
+  flex: 0 0 112px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+  padding: 7px 9px;
+}
+.atp-change-box span {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #94a3b8;
+}
+.atp-change-box b {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  color: #0f172a;
+}
+.atp-last-sale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 13px 0;
+  border: 1px solid #d1fae5;
+  border-radius: 9px;
+  background: #ecfdf5;
+  padding: 7px 8px;
+}
+.atp-checkout-footer {
+  position: static !important;
+  padding: 9px 13px 10px !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  background: #fff;
+}
+@media (min-width: 901px) and (max-height: 760px) {
+  .atp-checkout-cart { max-height: 150px !important; }
+  .atp-checkout-head { padding-top: 9px; padding-bottom: 8px; }
+  .atp-checkout-summary, .atp-checkout-payment { padding-top: 8px; padding-bottom: 8px; }
+  .atp-checkout-total-row strong { font-size: 25px; }
+  .atp-cash-row { margin-top: 7px; }
+  .atp-checkout-footer { padding-top: 7px !important; padding-bottom: 8px !important; }
+}
+@media (max-width: 900px) {
+  .atp-checkout-cart { max-height: 260px !important; }
+}

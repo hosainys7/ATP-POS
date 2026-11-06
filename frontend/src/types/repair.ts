@@ -1,0 +1,24 @@
+export type Repair = {
+  id: number;
+  client_name: string;
+  phone: string;
+  brand: string;
+  model: string;
+  serial_number: string;
+  problem: string;
+  service_category?: string;
+  service_name?: string;
+  service_price_hint?: string;
+  reception_condition: string;
+  accessories: string;
+  diagnosis: string;
+  repair_details: string;
+  parts_cost: number;
+  labor_cost: number;
+  total: number;
+  payment_method: string;
+  status: string;
+  created_at: string;
+  delivered_at: string | null;
+  sale_id?: number | null;
+};
