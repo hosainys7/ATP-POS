@@ -1,8 +1,28 @@
-# Atelier Trottinette Pro - POS & Stock Management
+# ATP POS
+
+**Atelier Trottinette Pro — POS, stock & workshop management system**
 
 Custom local-first point-of-sale and workshop management system built for a scooter shop.
 
 The application centralizes everyday counter operations: barcode sales, stock tracking, mixed product/service carts, repair follow-up, receipt printing, sales history and local backups.
+
+## Screenshots
+
+### Dashboard
+
+![ATP POS Dashboard](docs/screenshots/dashboard.png)
+
+### Point of sale
+
+![ATP POS Point of Sale](docs/screenshots/pos.png)
+
+### Stock reception & product identification
+
+![ATP POS Stock](docs/screenshots/stock.png)
+
+### Repair checkout
+
+![ATP POS Repairs](docs/screenshots/repairs.png)
 
 ## Main features
 
