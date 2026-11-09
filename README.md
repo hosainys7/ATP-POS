@@ -1,51 +1,55 @@
 # ATP POS
 
-**Atelier Trottinette Pro — POS, stock & workshop management system**
+**Atelier Trottinette Pro — point of sale, inventory & workshop management**
 
-Custom local-first point-of-sale and workshop management system built for a scooter shop.
+ATP POS is a custom local-first business system built for a scooter shop. It centralizes day-to-day counter operations in one interface: product sales, barcode lookup, stock control, repair follow-up, receipts, reporting and local backups.
 
-The application centralizes everyday counter operations: barcode sales, stock tracking, mixed product/service carts, repair follow-up, receipt printing, sales history and local backups.
+> **Project status:** active development / local Windows deployment
 
 ## Screenshots
 
-### Dashboard
+| Dashboard | Point of sale |
+| --- | --- |
+| ![ATP POS Dashboard](docs/screenshots/dashboard.png) | ![ATP POS Point of Sale](docs/screenshots/pos.png) |
 
-![ATP POS Dashboard](docs/screenshots/dashboard.png)
+| Stock management | Repair checkout |
+| --- | --- |
+| ![ATP POS Stock](docs/screenshots/stock.png) | ![ATP POS Repairs](docs/screenshots/repairs.png) |
 
-### Point of sale
+## What the system handles
 
-![ATP POS Point of Sale](docs/screenshots/pos.png)
-
-### Stock reception & product identification
-
-![ATP POS Stock](docs/screenshots/stock.png)
-
-### Repair checkout
-
-![ATP POS Repairs](docs/screenshots/repairs.png)
+| Area | Capabilities |
+| --- | --- |
+| **Point of sale** | Barcode lookup, product selection, mixed carts, cash/card payments and receipt printing |
+| **Inventory** | Product references, brands, categories, buy/sell prices, quantities and low-stock thresholds |
+| **Repairs** | Reception, status tracking, preparation for checkout and payment through the main POS cart |
+| **Sales history** | Transaction history, receipt reprint, sale cancellation and product returns |
+| **Reporting** | Sales, transactions, payment methods, stock and repair activity |
+| **Backups** | Automatic and manual SQLite database backups for local operation |
 
 ## Main features
 
 - Barcode-based product lookup and checkout
-- Mixed cart: spare parts, scooters, accessories and repairs
-- Cash / card payment recording
+- Mixed cart for spare parts, scooters, accessories and repairs
+- Cash and card payment recording
 - Automatic stock deduction after completed sales
 - Product catalogue with barcode, reference, brand, category, prices and stock thresholds
 - Low-stock and out-of-stock visibility
-- Sales history, receipt reprint, cancellations and product returns
-- Simple repair workflow: reception -> in progress -> ready -> checkout -> returned
-- Repair amount added directly to the main POS cart
-- Dashboard for sales, transactions, payments, stock and active repairs
-- Printable receipts
+- Sales history with traceable cancellations and product returns
+- Repair workflow from reception to checkout and return
+- Ready repairs can be added directly to the main POS cart
+- Dashboard and reports for sales, transactions, payments, stock and active repairs
+- Printable receipts and receipt reprint
 - Automatic and manual SQLite backups
 - Local Windows launcher for daily shop use
 
-## Stack
+## Tech stack
 
-- **Frontend:** React, TypeScript, Vite, Tailwind CSS
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS
 - **Backend:** Node.js, Express, TypeScript
-- **Database:** SQLite
-- **Runtime:** Local Windows PC + browser
+- **Database:** SQLite with better-sqlite3
+- **Package manager:** pnpm
+- **Runtime:** local Windows PC + browser
 
 ## Architecture
 
@@ -62,9 +66,9 @@ Barcode scanner / browser
     SQLite database
 ```
 
-The system is designed to run locally on the shop computer. The browser is the interface, while business data is stored in SQLite rather than browser localStorage.
+The system is designed to run locally on the shop computer. The browser is the user interface, while business data is stored in SQLite rather than browser localStorage.
 
-## Core workflow
+## Core sales workflow
 
 ```text
 Scan / select product
@@ -76,7 +80,7 @@ Scan / select product
         -> receipt printed
 ```
 
-Repairs can be prepared separately and, once ready, added to the same checkout cart as physical products.
+Repairs are tracked separately during workshop work. Once a repair is marked ready and has a final amount, it can be added to the same checkout cart as physical products. After payment, the repair is marked as returned.
 
 ## Development
 
@@ -102,7 +106,7 @@ Backend API: `http://localhost:3001`
 
 ## Windows local use
 
-The project includes Windows helper scripts for local deployment and operation:
+The repository includes helper scripts for local deployment and daily operation:
 
 - `BUILD_WINDOWS.bat`
 - `START_WINDOWS.bat`
@@ -111,9 +115,9 @@ The project includes Windows helper scripts for local deployment and operation:
 
 After a production build, the application can be opened locally without VS Code.
 
-## Repository privacy and data
+## Data safety
 
-Real shop databases, sales history, backups and client information are intentionally excluded from this repository.
+Real shop databases, sales history, backups and customer information are intentionally excluded from this repository through `.gitignore`.
 
 Do **not** commit:
 
@@ -126,10 +130,11 @@ Use test/demo data for screenshots and development.
 
 ## Project context
 
-Developed as a custom business system for **Atelier Trottinette Pro**, alongside its commercial website and product catalogue.
+Developed by **HUSS TECH** as a custom business system for **Atelier Trottinette Pro**, alongside its commercial website and product catalogue.
 
-Portfolio: https://huss-tech.fr
+**Portfolio:** https://huss-tech.fr  
+**Client website:** https://ateliertrottinettepro.fr
 
 ---
 
-> This repository documents the software project and its engineering workflow. Any fiscal/cash-register compliance required for production use should be validated separately for the applicable legal context.
+> This repository documents the software project and its engineering workflow. Any fiscal or cash-register compliance required for production use should be validated separately for the applicable legal context.
